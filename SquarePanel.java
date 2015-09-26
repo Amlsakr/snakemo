@@ -1,9 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package snack.master;
+
 import java.awt.Color;
 import javax.swing.JPanel;
 
+/**
+ *
+ * @author Amoula
+ */
 public class SquarePanel extends JPanel{
-	
-	private static final long serialVersionUID = 1L;
+    	private static final long serialVersionUID = 1L;
 
 	public SquarePanel(Color d){
 		this.setBackground(d);
@@ -13,6 +23,4 @@ public class SquarePanel extends JPanel{
 		this.setBackground(d);
 		this.repaint();
 	}
-	
 }
-
