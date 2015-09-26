@@ -1,18 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package snack.master;
+
+import com.sun.java.swing.plaf.windows.WindowsBorders;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 import javax.swing.JFrame;
-
-
-class Window extends JFrame{
-	private static final long serialVersionUID = -2542001418764869760L;
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author Amoula
+ */
+public class Window extends JFrame {
+    	private static final long serialVersionUID = -2542001418764869760L;
 	public static ArrayList<ArrayList<DataOfSquare>> Grid;
 	public static int width = 20;
 	public static int height = 20;
 	public Window(){
-		
-		
+//		          JComboBox cs = new JComboBox ();
+//                          cs.setSize(20, 6);
+//                          cs.addItem("High");
+//                          cs.addItem("Medium");
+//                          cs.addItem("Low");
+//                          
+//                          this.add(cs);
 		// Creates the arraylist that'll contain the threads
 		Grid = new ArrayList<ArrayList<DataOfSquare>>();
 		ArrayList<DataOfSquare> data;
@@ -21,7 +39,7 @@ class Window extends JFrame{
 		for(int i=0;i<width;i++){
 			data= new ArrayList<DataOfSquare>();
 			for(int j=0;j<height;j++){
-				DataOfSquare c = new DataOfSquare(2);
+				DataOfSquare c = new DataOfSquare(1);
 				data.add(c);
 			}
 			Grid.add(data);
@@ -40,7 +58,24 @@ class Window extends JFrame{
 		// initial position of the snake
 		Tuple position = new Tuple(10,10);
 		// passing this value to the controller
-		ThreadsController c = new ThreadsController(position);
+//                
+// if (cs.getSelectedIndex() == 0)
+//     ThreadsController.speed = 50;
+// else if (cs.getSelectedIndex() == 1)
+//     ThreadsController.speed = 75 ;
+// else 
+//     ThreadsController.speed = 100 ;
+                int l =0 ;
+    String x = JOptionPane.showInputDialog("Please Enter 1 for Low  Speed OR 2 for Medium OR 3 for High ", null);
+    int r = Integer.parseInt(x);
+    if (r == 1)
+        l = 50;
+    else if (r == 2)
+        l = 75 ;
+    else 
+        l = 100 ;
+                
+		ThreadsController c   = new ThreadsController(position , l);
 		//Let's start the game now..
 		c.start();
 
@@ -54,4 +89,5 @@ class Window extends JFrame{
 		//c2.start();
 		
 	}
+    
 }
