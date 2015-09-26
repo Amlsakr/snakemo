@@ -1,5 +1,16 @@
-public class Tuple { 
-	  public  int x; 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package snack.master;
+
+/**
+ *
+ * @author Amoula
+ */
+public class Tuple {
+      public  int x; 
 	  public  int y; 
 	  public int xf;
 	  public int yf;
@@ -24,6 +35,4 @@ public class Tuple {
 	  public int getYf(){
 		  return yf;
 	  }
-		  
-		  
-} 
+}
