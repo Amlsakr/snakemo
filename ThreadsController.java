@@ -1,20 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package snack.master;
+
+/**
+ *
+ * @author Amoula
+ */
 import java.util.ArrayList;
-
-
-//Controls all the game logic .. most important class in this project.
-public class ThreadsController extends Thread {
-	 ArrayList<ArrayList<DataOfSquare>> Squares= new ArrayList<ArrayList<DataOfSquare>>();
+public class ThreadsController  extends Thread{
+     ArrayList<ArrayList<DataOfSquare>> Squares= new ArrayList<ArrayList<DataOfSquare>>();
 	 Tuple headSnakePos;
-	 int sizeSnake=3;
-	 long speed = 100;
+	 int sizeSnake=1;
+	public  long speed ;
 	 public static int directionSnake ;
 
 	 ArrayList<Tuple> positions = new ArrayList<Tuple>();
 	 Tuple foodPosition;
 	 
 	 //Constructor of ControlleurThread 
-	 ThreadsController(Tuple positionDepart){
+	 ThreadsController(Tuple positionDepart , int s){
 		//Get all the threads
+             speed = s ;
 		Squares=Window.Grid;
 		
 		headSnakePos=new Tuple(positionDepart.x,positionDepart.y);
@@ -24,10 +33,12 @@ public class ThreadsController extends Thread {
 		Tuple headPos = new Tuple(headSnakePos.getX(),headSnakePos.getY());
 		positions.add(headPos);
 		
-		foodPosition= new Tuple(Window.height-1,Window.width-1);
+		foodPosition= new Tuple(Window.height-10,Window.width-10);
 		spawnFood(foodPosition);
 
 	 }
+
+   
 	 
 	 //Important part :
 	 public void run() {
@@ -39,6 +50,7 @@ public class ThreadsController extends Thread {
 			 pauser();
 		 }
 	 }
+     
 	 
 	 //delay between each move of the snake
 	 private void pauser(){
@@ -79,7 +91,7 @@ public class ThreadsController extends Thread {
 	 
 	 //Put food in a position and displays it
 	 private void spawnFood(Tuple foodPositionIn){
-		 	Squares.get(foodPositionIn.x).get(foodPositionIn.y).lightMeUp(1);
+		 	Squares.get(foodPositionIn.x).get(foodPositionIn.y).lightMeUp(0);
 	 }
 	 
 	 //return a position not occupied by the snake
@@ -148,7 +160,7 @@ public class ThreadsController extends Thread {
 	 private void deleteTail(){
 		 int cmpt = sizeSnake;
 		 for(int i = positions.size()-1;i>=0;i--){
-			 if(cmpt==0){
+			 if(cmpt == 0){
 				 Tuple t = positions.get(i);
 				 Squares.get(t.y).get(t.x).lightMeUp(2);
 			 }
@@ -158,7 +170,7 @@ public class ThreadsController extends Thread {
 		 }
 		 cmpt = sizeSnake;
 		 for(int i = positions.size()-1;i>=0;i--){
-			 if(cmpt==0){
+			 if(cmpt == 0){
 				 positions.remove(i);
 			 }
 			 else{
@@ -166,4 +178,5 @@ public class ThreadsController extends Thread {
 			 }
 		 }
 	 }
+    
 }
